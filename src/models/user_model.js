@@ -1,7 +1,6 @@
 // const mongoose = require('mongoose');
-const db = require('../config/db');
-require('dotenv').config();
-
+// const db = require('../config/db');
+import db from '../config/db.js';
 const userSchema = db.Schema(
   {
     name: {
@@ -43,5 +42,4 @@ userSchema.statics.checkUser = async function (email) {
   }
 };
 
-const User = db.model('User', userSchema);
-module.exports = { User };
+export const User = db.model('User', userSchema);

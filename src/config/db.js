@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-const { config } = require('../config');
+import mongoose from 'mongoose';
+import config from '../config/index.js';
+console.log(config);
 const { MONGO_URI } = config;
 const options = {
   useNewUrlParser: true,
@@ -10,4 +11,5 @@ const options = {
 mongoose.connect(MONGO_URI, options, function () {
   console.log('mongodb connected');
 });
-module.exports = mongoose;
+
+export default mongoose;

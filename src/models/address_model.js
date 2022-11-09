@@ -1,4 +1,4 @@
-const db = require('../config/db');
+import db from '../config/db.js';
 
 const addressSchema = db.Schema(
   {
@@ -45,5 +45,4 @@ const addressSchema = db.Schema(
   { timestamps: true }
 );
 
-const Address = db.model('Address', addressSchema);
-module.exports = { Address };
+export const Address = db.model('Address', addressSchema);

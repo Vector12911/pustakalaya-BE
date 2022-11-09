@@ -1,18 +1,18 @@
-const express = require('express');
-require('dotenv').config();
+import express from 'express';
 let router = express.Router();
-const { User } = require('../../models/user_model');
-const { register } = require('../../controllers/auth');
+
+import {
+  register,
+  login,
+  renewTokens,
+  logout,
+} from '../../controllers/auth.js';
+import { verifyAuth } from '../../middleware/auth.js';
 
 router.post('/register', register);
+router.post('/login', login);
+router.post('/logout', verifyAuth, logout);
+router.get('/refresh', renewTokens);
 
-router.route('/:userId').get(async (req, res) => {
-  try {
-    const userData = await User.checkUser(req.params.userId);
-    res.status(200).send(userData);
-  } catch (error) {
-    res.status(400).json({ message: 'Error', error: error });
-  }
-});
-
-module.exports = router;
+// module.exports = router;
+export default router;
